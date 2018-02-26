@@ -13,17 +13,17 @@
 #include "speaker.h"
 
 
-char text[10];
-char a;
+char text[10][10];
+int a;
 
 void SimpleFunction(void);	//A simple function: print a counter (0 to 9) to the terminal
 
 int main(void)
-{	
+{
 
 	
 	//###1###
-	 
+	
 	//Initialize subsystems
 	ClockInit();			//Initialize system clock (16 MHz)
 	USARTInit();			//Initialize USART and bind to stdout,stdin
@@ -39,7 +39,7 @@ int main(void)
 	SREG|=0b10000000;		//Globale interrupt enable
 	_delay_ms(500);
 
-	//###2###	
+	//###2###
 	SimpleFunction();
 	
 	while (1);
@@ -47,10 +47,13 @@ int main(void)
 
 void SimpleFunction(void)
 {
+	char text[5][10];
+	
+	int a;
 	for (a=0;a<10;a++)
 	{
-		//sprintf zet de a om in asci code, deze ascii code ligt hoger dan 10, dus stopt de loop
-		printf(text,"Counter:%d\r",a);
-		puts(text);
+		//The variable text had the same address throughout the execution of the program.
+		sprintf(text[a],"Counter:%d\r",a);
+		puts(text[a]);
 	}
 }
