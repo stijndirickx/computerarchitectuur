@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.Atmel.AVRGCC8.C</ToolchainName>
+    <ProjectGuid>{20142121-6864-4dd0-a32e-95576948ce04}</ProjectGuid>
+    <avrdevice>ATxmega16D4</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>gamecontroller</AssemblyName>
+    <Name>gamecontroller</Name>
+    <RootNamespace>gamecontroller</RootNamespace>
+    <ToolchainFlavour>Native</ToolchainFlavour>
+    <AsfVersion>2.11.1</AsfVersion>
+    <avrtoolinterface>PDI</avrtoolinterface>
+    <avrtool>com.atmel.avrdbg.tool.avrdragon</avrtool>
+    <com_atmel_avrdbg_tool_avrdragon>
+      <ToolType>com.atmel.avrdbg.tool.avrdragon</ToolType>
+      <ToolName>AVR Dragon</ToolName>
+      <ToolNumber>00A200028032</ToolNumber>
+      <Channel>
+        <host>127.0.0.1</host>
+        <port>52568</port>
+        <ssl>False</ssl>
+      </Channel>
+      <ToolOptions>
+        <InterfaceName>PDI</InterfaceName>
+        <InterfaceProperties>
+          <JtagDbgClock>200000</JtagDbgClock>
+          <JtagProgClock>1000000</JtagProgClock>
+          <IspClock>150000</IspClock>
+          <JtagInChain>false</JtagInChain>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+          <JtagDevicesBefore>0</JtagDevicesBefore>
+          <JtagDevicesAfter>0</JtagDevicesAfter>
+          <JtagInstrBitsBefore>0</JtagInstrBitsBefore>
+          <JtagInstrBitsAfter>0</JtagInstrBitsAfter>
+        </InterfaceProperties>
+      </ToolOptions>
+    </com_atmel_avrdbg_tool_avrdragon>
+    <com_atmel_avrdbg_tool_simulator>
+      <ToolType>com.atmel.avrdbg.tool.simulator</ToolType>
+      <ToolName>Simulator</ToolName>
+      <ToolNumber>
+      </ToolNumber>
+      <Channel>
+        <host>127.0.0.1</host>
+        <port>58455</port>
+        <ssl>False</ssl>
+      </Channel>
+      <ToolOptions>
+        <InterfaceProperties>
+          <JtagEnableExtResetOnStartSession>false</JtagEnableExtResetOnStartSession>
+        </InterfaceProperties>
+        <InterfaceName>PDI</InterfaceName>
+      </ToolOptions>
+    </com_atmel_avrdbg_tool_simulator>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <OverrideVtorValue>exception_table</OverrideVtorValue>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress>0x20000000</RamSnippetAddress>
+    <UncachedRange />
+    <BootSegment>2</BootSegment>
+    <AsfFrameworkConfig>
+      <framework-data>
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.26.0" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
+    <preserveEEPROM>true</preserveEEPROM>
+    <PercepioTrace>
+      <TargetOS xmlns="" />
+      <Frequency xmlns="">64000000</Frequency>
+      <EnableTraceInterrupts xmlns="">False</EnableTraceInterrupts>
+      <EnableNonintrusive xmlns="">True</EnableNonintrusive>
+      <EnableTargetOS xmlns="">False</EnableTargetOS>
+      <EnableApplicationOutput xmlns="">True</EnableApplicationOutput>
+      <EnableDataWatchPoints xmlns="">True</EnableDataWatchPoints>
+      <EnablePC xmlns="">False</EnablePC>
+      <EnablePCPolled xmlns="">False</EnablePCPolled>
+      <PolledFrequency xmlns="">1000</PolledFrequency>
+      <EnableMcu xmlns="">False</EnableMcu>
+      <EnableOsAwareness xmlns="">False</EnableOsAwareness>
+      <HWApplicationOutput xmlns="">False</HWApplicationOutput>
+      <HWInterrupt xmlns="">False</HWInterrupt>
+      <HWIntrusiveDataWatch xmlns="">True</HWIntrusiveDataWatch>
+      <HWNonintrusiveDataWatch xmlns="">False</HWNonintrusiveDataWatch>
+      <HWPolledDataWatch xmlns="">False</HWPolledDataWatch>
+      <HWPolledProgramCounterSampling xmlns="">False</HWPolledProgramCounterSampling>
+      <HWProfiling xmlns="">False</HWProfiling>
+      <HWProgramCounterSampling xmlns="">False</HWProgramCounterSampling>
+      <ApplicationOutput0 xmlns="">String</ApplicationOutput0>
+      <ApplicationOutput1 xmlns="">String</ApplicationOutput1>
+      <ApplicationOutput2 xmlns="">String</ApplicationOutput2>
+      <ApplicationOutput3 xmlns="">String</ApplicationOutput3>
+      <ApplicationOutput4 xmlns="">String</ApplicationOutput4>
+      <ApplicationOutput5 xmlns="">String</ApplicationOutput5>
+      <ApplicationOutput6 xmlns="">String</ApplicationOutput6>
+      <ApplicationOutput7 xmlns="">String</ApplicationOutput7>
+      <ApplicationOutput8 xmlns="">String</ApplicationOutput8>
+      <ApplicationOutput9 xmlns="">String</ApplicationOutput9>
+      <ApplicationOutput10 xmlns="">String</ApplicationOutput10>
+      <ApplicationOutput11 xmlns="">String</ApplicationOutput11>
+      <ApplicationOutput12 xmlns="">String</ApplicationOutput12>
+      <ApplicationOutput13 xmlns="">String</ApplicationOutput13>
+      <ApplicationOutput14 xmlns="">String</ApplicationOutput14>
+      <ApplicationOutput15 xmlns="">String</ApplicationOutput15>
+      <ApplicationOutput16 xmlns="">String</ApplicationOutput16>
+      <ApplicationOutput17 xmlns="">String</ApplicationOutput17>
+      <ApplicationOutput18 xmlns="">String</ApplicationOutput18>
+      <ApplicationOutput19 xmlns="">String</ApplicationOutput19>
+      <ApplicationOutput20 xmlns="">String</ApplicationOutput20>
+      <ApplicationOutput21 xmlns="">String</ApplicationOutput21>
+      <ApplicationOutput22 xmlns="">String</ApplicationOutput22>
+      <ApplicationOutput23 xmlns="">String</ApplicationOutput23>
+      <ApplicationOutput24 xmlns="">String</ApplicationOutput24>
+      <ApplicationOutput25 xmlns="">String</ApplicationOutput25>
+      <ApplicationOutput26 xmlns="">String</ApplicationOutput26>
+      <ApplicationOutput27 xmlns="">String</ApplicationOutput27>
+      <ApplicationOutput28 xmlns="">String</ApplicationOutput28>
+      <ApplicationOutput29 xmlns="">String</ApplicationOutput29>
+      <ApplicationOutput30 xmlns="">String</ApplicationOutput30>
+      <ApplicationOutput31 xmlns="">String</ApplicationOutput31>
+    </PercepioTrace>
+    <avrtoolserialnumber>00A200028032</avrtoolserialnumber>
+    <avrdeviceexpectedsignature>0x1E9442</avrdeviceexpectedsignature>
+    <ResetRule>0</ResetRule>
+    <EraseKey />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.Device>-mmcu=atxmega16d4 -B "%24(PackRepoDir)\atmel\XMEGAD_DFP\1.0.32\gcc\dev\atxmega16d4"</avrgcc.common.Device>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\XMEGAD_DFP\1.0.32\include</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.level>Optimize for size (-Os)</avrgcc.compiler.optimization.level>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\XMEGAD_DFP\1.0.32\include</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+      </AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <AvrGcc>
+        <avrgcc.common.Device>-mmcu=atxmega16d4 -B "%24(PackRepoDir)\atmel\XMEGAD_DFP\1.0.32\gcc\dev\atxmega16d4"</avrgcc.common.Device>
+        <avrgcc.common.outputfiles.hex>True</avrgcc.common.outputfiles.hex>
+        <avrgcc.common.outputfiles.lss>True</avrgcc.common.outputfiles.lss>
+        <avrgcc.common.outputfiles.eep>True</avrgcc.common.outputfiles.eep>
+        <avrgcc.common.outputfiles.srec>True</avrgcc.common.outputfiles.srec>
+        <avrgcc.common.outputfiles.usersignatures>False</avrgcc.common.outputfiles.usersignatures>
+        <avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>True</avrgcc.compiler.general.ChangeDefaultCharTypeUnsigned>
+        <avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>True</avrgcc.compiler.general.ChangeDefaultBitFieldUnsigned>
+        <avrgcc.compiler.directories.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\XMEGAD_DFP\1.0.32\include</Value>
+          </ListValues>
+        </avrgcc.compiler.directories.IncludePaths>
+        <avrgcc.compiler.optimization.PackStructureMembers>True</avrgcc.compiler.optimization.PackStructureMembers>
+        <avrgcc.compiler.optimization.AllocateBytesNeededForEnum>True</avrgcc.compiler.optimization.AllocateBytesNeededForEnum>
+        <avrgcc.compiler.optimization.DebugLevel>Maximum (-g3)</avrgcc.compiler.optimization.DebugLevel>
+        <avrgcc.compiler.warnings.AllWarnings>True</avrgcc.compiler.warnings.AllWarnings>
+        <avrgcc.linker.libraries.Libraries>
+          <ListValues>
+            <Value>libm</Value>
+          </ListValues>
+        </avrgcc.linker.libraries.Libraries>
+        <avrgcc.assembler.general.IncludePaths>
+          <ListValues>
+            <Value>%24(PackRepoDir)\atmel\XMEGAD_DFP\1.0.32\include</Value>
+          </ListValues>
+        </avrgcc.assembler.general.IncludePaths>
+        <avrgcc.assembler.debugging.DebugLevel>Default (-Wa,-g)</avrgcc.assembler.debugging.DebugLevel>
+      </AvrGcc>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Acc.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Analog.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Analog.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Clock.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Clock.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="encoder.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="encoder.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="gamecontroller.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="acc.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Led.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="LED.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="speaker.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="speaker.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="switch.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="switch.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="USART.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="USART.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>
