@@ -57,3 +57,18 @@ void SimpleFunction(void)
 		puts(text[a]);
 	}
 }
+
+void LightLoop(void)
+{
+	char bitmask = 0b00000001;
+	while (1)
+	{
+		LEDSet(bitmask);
+		if(bitmask == 0b00001000){
+			bitmask >>= 3; //terug eerste led
+		} else {
+			bitmask <<= 1; //bitshift naar volgende led
+		}
+		_delay_ms(500);
+	};
+}
