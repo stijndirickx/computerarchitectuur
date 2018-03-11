@@ -1,5 +1,31 @@
-<html>
-    <head>
-        <script src="tool.js"></script>
-    </head>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Baudtool</title>
+</head>
+<body>
+    <label for="baud">Baudrate</label>
+    <input type="text" id="baud">
+    <button onclick="calc()">Calculate</button>
+    <p>BSEL: <span id="bsel" style="font-weight: bold;"></span></p>
+    <p>BSCALE: <span id="bscale" style="font-weight: bold;"></span></p>
+    <script>
+        function calcFbaud(bscale, bsel, fper){
+            if (bscale < 0) {
+                return fper/(16*((bsel*2^bscale)+1));
+            }
+            else {
+                return fper/((2^bscale)*(16*(bsel+1)));
+            }
+        }
+
+        function calc(){
+            document.getElementById("bsel").innerHTML = 250;
+            document.getElementById("bscale").innerHTML = 500;
+        }
+    </script>
+</body>
 </html>
