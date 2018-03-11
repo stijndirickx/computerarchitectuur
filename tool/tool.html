@@ -12,40 +12,45 @@
     <button onclick="calcFbaud()">Calculate</button>
     <p>BSEL: <span id="bsel" style="font-weight: bold;"></span></p>
     <p>BSCALE: <span id="bscale" style="font-weight: bold;"></span></p>
+    <p>AFWIJKING: <span id="afwijking" style="font-weight: bold;"></span></p>
     <script>
-        fper = 16;
+        fper = 32000000;
 
         function calcFbaud(){
             fbaud = document.getElementById('baud').value;
-            bscale = 0, bsel = 0;
+            bscale = 0;
             fber = 0; //berekende fbaud
 
-            for (var j = 0; j < 4095; j++) {
-                for (var i = 0; i < 7; i++) {
-                    fnew = fper/((2^i)*(16*(j+1)));
-                    console.log(fnew);
-                    console.log("bs or: " + Math.abs(fber-fbaud));
-                    console.log("new or: " + Math.abs(fnew-fbaud));
-                    if(Math.abs(fber-fbaud)>Math.abs(fnew-fbaud)){
-                        console.log("better on " + i);
-                        fber = fnew;
-                        bscale = i;
-                        bsel = j;
-                    }
+            for (var i = 0; i < 8; i++) {
+                bselnew = (fper / (2^i)*16*fbaud) - 1;
+                fnew = fper/((2^i)*(16*(bselnew+1)));
+                console.log(i)
+                console.log("fbaud: " + fnew);
+                console.log("bsel: " + bselnew);
+                if(Math.abs(fber-fbaud)>Math.abs(fnew-fbaud)){
+                    console.log("better on " + i);
+                    fber = fnew;
+                    bscale = i;
+                    bsel = bselnew;
                 }
-                for (var i = 0; i < -7; i--) {
-                    fnew = (fper-1)/(16*fbaud*2^i);
-                    if(Math.abs(fber-fbaud)>Math.abs(fnew-fbaud)){
-                        console.log("better on " + i);
-                        fber = fnew;
-                        bscale = i;
-                        bsel = j;
-                    }
+            }
+            for (var i = -1; i > -8; i--) {
+                bselnew = (1/(2^i))*((fper / (16*fbaud))-1);
+                fnew = fper/(16*((bselnew*2^i)+1));
+                console.log(i);
+                console.log("fbaud: " + fnew);
+                console.log("bsel: " + bselnew);
+                if(Math.abs(fber-fbaud)>Math.abs(fnew-fbaud)){
+                    console.log("better on " + i);
+                    fber = fnew;
+                    bscale = i;
+                    bsel = bselnew;
                 }
             }
 
             document.getElementById("bsel").innerHTML = bsel;
             document.getElementById("bscale").innerHTML = bscale;
+            document.getElementById("afwijking").innerHTML = fbaud - fber;
         }
     </script>
 </body>
