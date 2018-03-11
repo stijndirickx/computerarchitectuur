@@ -9,22 +9,43 @@
 <body>
     <label for="baud">Baudrate</label>
     <input type="text" id="baud">
-    <button onclick="calc()">Calculate</button>
+    <button onclick="calcFbaud()">Calculate</button>
     <p>BSEL: <span id="bsel" style="font-weight: bold;"></span></p>
     <p>BSCALE: <span id="bscale" style="font-weight: bold;"></span></p>
     <script>
-        function calcFbaud(bscale, bsel, fper){
-            if (bscale < 0) {
-                return fper/(16*((bsel*2^bscale)+1));
-            }
-            else {
-                return fper/((2^bscale)*(16*(bsel+1)));
-            }
-        }
+        fper = 16;
 
-        function calc(){
-            document.getElementById("bsel").innerHTML = 250;
-            document.getElementById("bscale").innerHTML = 500;
+        function calcFbaud(){
+            fbaud = document.getElementById('baud').value;
+            bscale = 0, bsel = 0;
+            fber = 0; //berekende fbaud
+
+            for (var j = 0; j < 4095; j++) {
+                for (var i = 0; i < 7; i++) {
+                    fnew = fper/((2^i)*(16*(j+1)));
+                    console.log(fnew);
+                    console.log("bs or: " + Math.abs(fber-fbaud));
+                    console.log("new or: " + Math.abs(fnew-fbaud));
+                    if(Math.abs(fber-fbaud)>Math.abs(fnew-fbaud)){
+                        console.log("better on " + i);
+                        fber = fnew;
+                        bscale = i;
+                        bsel = j;
+                    }
+                }
+                for (var i = 0; i < -7; i--) {
+                    fnew = (fper-1)/(16*fbaud*2^i);
+                    if(Math.abs(fber-fbaud)>Math.abs(fnew-fbaud)){
+                        console.log("better on " + i);
+                        fber = fnew;
+                        bscale = i;
+                        bsel = j;
+                    }
+                }
+            }
+
+            document.getElementById("bsel").innerHTML = bsel;
+            document.getElementById("bscale").innerHTML = bscale;
         }
     </script>
 </body>
