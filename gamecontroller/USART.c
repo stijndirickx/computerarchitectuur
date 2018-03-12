@@ -15,8 +15,12 @@ void USARTInit(void)
 	USART.CTRLB=0b00011000; //transmitter en reveicer aan, double speed comm uit
 	USART.CTRLC=0b00000011; // USART in async mode
 	
-	USART.BAUDCTRLA=0xE5; //BSEL=3301, BSCALE=-5 9600 baud
-	USART.BAUDCTRLB=0xBC; 
+	//USART.BAUDCTRLA=0xE5; //BSEL=3301, BSCALE=-5 9600 baud
+	//USART.BAUDCTRLB=0xBC; 
+
+	//BSEL=2094=1000 0010 1110, BSCALE=-7=1001 115200 baud [afwijking: 115211 baud]
+	USART.BAUDCTRLA=0x2E; //0010 1110
+	USART.BAUDCTRLB=0x98; //1001 1000
 	
 	stdout=&UsartStdio; // koppeling tussen drivercode en stdio lib
 	stdin=&UsartStdio;
@@ -25,7 +29,7 @@ void USARTInit(void)
 //vormt onderste laag van stdio lib
 static int stdio_putchar(char c, FILE * stream) //1 byte over USART
 {
-	USART.DATA = c;//USARTC --> c = 0x63, USARTD --> 0x55 = U
+	USART.DATA = c;//USARTC --> c = 0x63, USARTD --> 0x55 = U = 0101 0101
 	while (!(USART.STATUS & 0b01000000)); //wachten op TXCIF (Transmit Complete interrupt flag) = byte verzonden
 	USART.STATUS=0b01000000; //vlag op 0 voor volgende datatransfer
 	return 0;
