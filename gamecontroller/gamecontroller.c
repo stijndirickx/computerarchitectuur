@@ -17,6 +17,7 @@ char text[10][10];
 int a;
 
 void SimpleFunction(void);	//A simple function: print a counter (0 to 9) to the terminal
+void LightLoop(void);
 
 int main(void)
 {
@@ -40,16 +41,13 @@ int main(void)
 	_delay_ms(500);
 
 	//###2###
-	SimpleFunction();
-	
+	//SimpleFunction();
+	LightLoop();
 	while (1);
 }
 
 void SimpleFunction(void)
 {
-	char text[5][10];
-	
-	int a;
 	for (a=0;a<10;a++)
 	{
 		//The variable text had the same address throughout the execution of the program.
@@ -70,5 +68,10 @@ void LightLoop(void)
 			bitmask <<= 1; //bitshift naar volgende led
 		}
 		_delay_ms(500);
+		
+		//GPIO INPUT:
+		char switch_out[5];
+		sprintf(switch_out, "SWITCH x\r\n", SwitchGet());
+		puts(switch_out);
 	};
 }
