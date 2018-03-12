@@ -22,6 +22,6 @@ char SwitchGet(void)
 	char input = PORTD.IN; 
 	//PORTDIN looks like 11110001 'if everything would be pressed', the wanted format for ex.: xxx11111
 	//To achieve this bitshift first 4 bits , 3 to the right and the bit on the right stays at the same place
-	return ((input & 0b11110000) >> 3) | (input & 0x01);
+	return ((input & 0b11110000) >> 3) | (input & 0b00000001);
 }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
