@@ -3,24 +3,25 @@
 
 void SwitchInit(void)
 {
-	//11,13,15 p124
 	
-	PORTD.DIRCLR |= 0b11110001;
-	PORTD.PIN0CTRL= 0b00000001;		//indrukkenn
-	PORTD.PIN4CTRL= 0b00000001;		//rechts
-	PORTD.PIN5CTRL= 0b00000001;		//beneden
-	PORTD.PIN6CTRL= 0b00000001;		//links
-	PORTD.PIN7CTRL= 0b00000001;		//omhoog
+	//This register sets the data direction for the individual pins of the port. If DIRn is written to one,
+	//pin n is configured as an output pin. If DIRn is written to zero, pin n is configured as an input pin
+	PORTD.DIR &= 0b00001110; 
+
+	//11.13.15 p124
+	PORTD.PIN0CTRL= 0b00000001;		//Center
+	PORTD.PIN4CTRL= 0b00000001;		//Right
+	PORTD.PIN5CTRL= 0b00000001;		//Down
+	PORTD.PIN6CTRL= 0b00000001;		//Left
+	PORTD.PIN7CTRL= 0b00000001;		//Up
 }
 
 
 char SwitchGet(void)
 {
-	PORTB.PIN0CTRL = PORTD.PIN0CTRL;
-	PORTB.PIN1CTRL = PORTD.PIN4CTRL;
-	PORTB.PIN2CTRL = PORTD.PIN5CTRL;
-	PORTB.PIN3CTRL = PORTD.PIN6CTRL;
-	PORTB.PIN4CTRL = PORTD.PIN7CTRL;
-	return PORTB.OUT;
+	char input = PORTD.IN; 
+	//PORTDIN looks like 11110001 'if everything would be pressed', the wanted format for ex.: xxx11111
+	//To achieve this bitshift first 4 bits , 3 to the right and the bit on the right stays at the same place
+	return ((input & 0b11110000) >> 3) | (input & 0x01);
 }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
