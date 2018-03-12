@@ -1,3 +1,4 @@
+//CONTROLLER 6
 #define F_CPU 16000000L
 
 #include <avr/io.h>
@@ -31,7 +32,7 @@ int main(void)
 	AnalogInit();			//Initialize ADC
 	AccInit();				//Initialize accelerometer system
 	LEDInit();				//Initialize LEDs
-	SwitchInit();			//Initialize switches
+	//SwitchInit();			//Initialize switches
 	EncoderInit();			//Initialize encoder
 	SpeakerInit();			//Initialize speaker system
 	

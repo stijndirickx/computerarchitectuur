@@ -18,9 +18,9 @@ void USARTInit(void)
 	//USART.BAUDCTRLA=0xE5; //BSEL=3301, BSCALE=-5 9600 baud
 	//USART.BAUDCTRLB=0xBC; 
 
-	//BSEL=2094=1000 0010 1110, BSCALE=-7=1001 115200 baud [afwijking: 115211 baud]
-	USART.BAUDCTRLA=0x2E; //0010 1110
-	USART.BAUDCTRLB=0x98; //1001 1000
+	//BSEL=983=0011 1101 0111, BSCALE=-7=1001 --> 115200 baud [afwijking: 115211 baud]
+	USART.BAUDCTRLA=0xD7; //1101 0111
+	USART.BAUDCTRLB=0x93; //1001 0011
 	
 	stdout=&UsartStdio; // koppeling tussen drivercode en stdio lib
 	stdin=&UsartStdio;
@@ -29,7 +29,7 @@ void USARTInit(void)
 //vormt onderste laag van stdio lib
 static int stdio_putchar(char c, FILE * stream) //1 byte over USART
 {
-	USART.DATA = c;//USARTC --> c = 0x63, USARTD --> 0x55 = U = 0101 0101
+	USART.DATA = 0x55;//USARTD --> c, USARTC --> 0x55 = 0101 0101
 	while (!(USART.STATUS & 0b01000000)); //wachten op TXCIF (Transmit Complete interrupt flag) = byte verzonden
 	USART.STATUS=0b01000000; //vlag op 0 voor volgende datatransfer
 	return 0;
