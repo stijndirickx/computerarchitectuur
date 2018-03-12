@@ -22,7 +22,7 @@
     <com_atmel_avrdbg_tool_avrdragon>
       <ToolType>com.atmel.avrdbg.tool.avrdragon</ToolType>
       <ToolName>AVR Dragon</ToolName>
-      <ToolNumber>00A200028032</ToolNumber>
+      <ToolNumber>00A20003472A</ToolNumber>
       <Channel>
         <host>127.0.0.1</host>
         <port>52568</port>
@@ -71,15 +71,15 @@
     <BootSegment>2</BootSegment>
     <AsfFrameworkConfig>
       <framework-data>
-  <options />
-  <configurations />
-  <files />
-  <documentation help="" />
-  <offline-documentation help="" />
-  <dependencies>
-    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.26.0" />
-  </dependencies>
-</framework-data>
+        <options />
+        <configurations />
+        <files />
+        <documentation help="" />
+        <offline-documentation help="" />
+        <dependencies>
+          <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.26.0" />
+        </dependencies>
+      </framework-data>
     </AsfFrameworkConfig>
     <preserveEEPROM>true</preserveEEPROM>
     <PercepioTrace>
@@ -136,7 +136,7 @@
       <ApplicationOutput30 xmlns="">String</ApplicationOutput30>
       <ApplicationOutput31 xmlns="">String</ApplicationOutput31>
     </PercepioTrace>
-    <avrtoolserialnumber>00A200028032</avrtoolserialnumber>
+    <avrtoolserialnumber>00A20003472A</avrtoolserialnumber>
     <avrdeviceexpectedsignature>0x1E9442</avrdeviceexpectedsignature>
     <ResetRule>0</ResetRule>
     <EraseKey />

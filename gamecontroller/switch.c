@@ -16,11 +16,11 @@ void SwitchInit(void)
 
 char SwitchGet(void)
 {
-	//return 
 	PORTB.PIN0CTRL = PORTD.PIN0CTRL;
 	PORTB.PIN1CTRL = PORTD.PIN4CTRL;
 	PORTB.PIN2CTRL = PORTD.PIN5CTRL;
 	PORTB.PIN3CTRL = PORTD.PIN6CTRL;
 	PORTB.PIN4CTRL = PORTD.PIN7CTRL;
+	return PORTB.OUT;
 }
                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 
