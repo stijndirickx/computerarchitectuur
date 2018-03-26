@@ -30,7 +30,7 @@ int main(void)
 	AnalogInit();			//Initialize ADC
 	AccInit();				//Initialize accelerometer system
 	LEDInit();				//Initialize LEDs
-	//SwitchInit();			//Initialize switches
+	SwitchInit();			//Initialize switches
 	EncoderInit();			//Initialize encoder
 	SpeakerInit();			//Initialize speaker system
 
@@ -58,6 +58,7 @@ void SimpleFunction(void)
 void LightLoop(void)
 {
 	char bitmask = 0b00000001;
+			
 	while (1)
 	{
 		LEDSet(bitmask);
@@ -68,9 +69,13 @@ void LightLoop(void)
 		}
 		_delay_ms(500);
 		
-		//GPIO INPUT:
-		char switch_out[5];
-		sprintf(switch_out, "SWITCH x\r\n", SwitchGet());
-		puts(switch_out);
+		//GPIO INPUT of switch:
+		//printf("$SWITCH %d\r\n", SwitchGet());
+		
+		char switch_out[8];
+		char test = SwitchGet();
+		sprintf(switch_out, "$SWITCH %d\r\n", SwitchGet());
+		puts(test);
+		//puts(switch_out);
 	};
 }
