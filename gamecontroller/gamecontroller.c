@@ -21,9 +21,7 @@ void SimpleFunction(void);	//A simple function: print a counter (0 to 9) to the 
 void LightLoop(void);
 
 int main(void)
-{
-
-	
+{	
 	//###1###
 	
 	//Initialize subsystems
@@ -35,15 +33,15 @@ int main(void)
 	//SwitchInit();			//Initialize switches
 	EncoderInit();			//Initialize encoder
 	SpeakerInit();			//Initialize speaker system
-	
+
 	//Enable interrupts
 	PMIC.CTRL|=0b00000111;  //Enable low, medium, high priority interrupts
 	SREG|=0b10000000;		//Globale interrupt enable
 	_delay_ms(500);
 
 	//###2###
-	//SimpleFunction();
-	LightLoop();
+	SimpleFunction();
+	//LightLoop();
 	while (1);
 }
 
