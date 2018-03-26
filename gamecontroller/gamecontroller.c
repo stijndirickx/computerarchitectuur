@@ -42,7 +42,7 @@ int main(void)
 	_delay_ms(500);
 
 	//###2###
-	SimpleFunction();
+	//SimpleFunction();
 	LightLoop();
 	while (1);
 }
@@ -72,6 +72,12 @@ void LightLoop(void)
 		_delay_ms(500);
 		
 		//GPIO INPUT of switch:
-		printf("$SWITCH %d\r\n", SwitchGet());
+		//printf("$SWITCH %d\r\n", SwitchGet());
+		
+		char switch_out[8];
+		char test = SwitchGet();
+		sprintf(switch_out, "$SWITCH %d\r\n", SwitchGet());
+		puts(test);
+		//puts(switch_out);
 	};
 }
