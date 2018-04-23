@@ -26,7 +26,7 @@ int AnalogGetCh(int PinPos,int PinNeg)
 
 	ADCA.INTFLAGS = 0b00000001;	//Reset interrupt flag
 	ADCA.CTRLA = 0b00000101; // 00000 = reserved - 1 CH0(ADC) start - 0 pipeline flush - 1 enable ADC
-	while(ADCA.INTFLAGS == (0x00)); // wait until laatste bit is set = ADC conversion complete
+	while(ADCA.INTFLAGS == (0x00)); // wait until last bit is set = ADC conversion complete
 
-	return ADCA.CH0RES; // return Channel 0 Result register
+	return ADCA.CH0.RES; // return Channel 0 Result register
 }

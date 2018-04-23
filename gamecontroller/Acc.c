@@ -10,11 +10,11 @@ void AccInit(void)
 
 	//accelerometer uit slaaptoestand
 	// PC6 = ACC_SLEEP
-	PORTA.DIRSET = 0b01000000;
-	PORTA.PIN6CTRL = 0b00010001; // 0 reserved - 0 inverted IO enable - 010 Pull-down (on input) - 001 Sense rising edge
+	PORTC.DIRSET = 0b01000000;
+	PORTC.PIN6CTRL = 0b00010001; // 0 reserved - 0 inverted IO enable - 010 Pull-down (on input) - 001 Sense rising edge
 
 	//accelerometer actief zetten
-	PORTA.OUTSET = 0b01000000; //driven high
+	PORTC.OUTSET = 0b01000000; //driven high
 	
 }
 unsigned int AccGetXAxisRaw(void)
@@ -32,15 +32,18 @@ unsigned int AccGetZAxisRaw(void)
 
 int AccGetXAxis(unsigned int AccRaw)
 {
+	// 800
 	return 0;
 }
 
 int AccGetYAxis(unsigned int AccRaw)
 {
+	// 950
 	return 0;
 }
 
 int AccGetZAxis(unsigned int AccRaw)
 {
+	// 1175
 	return 0;
 }

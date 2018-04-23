@@ -49,6 +49,7 @@ int main(void)
 		LightLoop();
 		SwitchPrint();
 		AccPrint();
+		_delay_ms(500);
 	}
 }
 
@@ -70,7 +71,6 @@ void LightLoop(void)
 	} else {
 		bitmask <<= 1; //bitshift to next led
 	}
-	_delay_ms(500);
 }
 
 void SwitchPrint(void)
