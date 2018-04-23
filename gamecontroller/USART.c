@@ -29,7 +29,7 @@ void USARTInit(void)
 //vormt onderste laag van stdio lib
 static int stdio_putchar(char c, FILE * stream) //1 byte over USART
 {
-	USART.DATA = 0x55;//USARTD --> c, USARTC --> 0x55 = 0101 0101
+	USART.DATA = c;
 	while (!(USART.STATUS & 0b01000000)); //wachten op TXCIF (Transmit Complete interrupt flag) = byte verzonden
 	USART.STATUS=0b01000000; //vlag op 0 voor volgende datatransfer
 	return 0;

@@ -16,9 +16,11 @@
 
 char text[10][10];
 int a;
+char bitmask;
 
 void SimpleFunction(void);	//A simple function: print a counter (0 to 9) to the terminal
 void LightLoop(void);
+void SwitchPrint(void);
 
 int main(void)
 {	
@@ -40,9 +42,14 @@ int main(void)
 	_delay_ms(500);
 
 	//###2###
-	SimpleFunction();
-	//LightLoop();
-	while (1);
+	//SimpleFunction();
+	
+	bitmask = 0b00000001;
+	while (1){
+		LightLoop();
+		SwitchPrint();
+		AccPrint();
+	}
 }
 
 void SimpleFunction(void)
@@ -57,25 +64,25 @@ void SimpleFunction(void)
 
 void LightLoop(void)
 {
-	char bitmask = 0b00000001;
-			
-	while (1)
-	{
-		LEDSet(bitmask);
-		if(bitmask == 0b00001000){
-			bitmask >>= 3; //terug eerste led
-		} else {
-			bitmask <<= 1; //bitshift naar volgende led
-		}
-		_delay_ms(500);
-		
-		//GPIO INPUT of switch:
-		//printf("$SWITCH %d\r\n", SwitchGet());
-		
-		char switch_out[8];
-		char test = SwitchGet();
-		sprintf(switch_out, "$SWITCH %d\r\n", SwitchGet());
-		puts(test);
-		//puts(switch_out);
-	};
+	LEDSet(bitmask);
+	if(bitmask == 0b00001000){
+		bitmask >>= 3; //first led
+	} else {
+		bitmask <<= 1; //bitshift to next led
+	}
+	_delay_ms(500);
+}
+
+void SwitchPrint(void)
+{
+	printf("$SWITCH %d\r\n", SwitchGet());
+}
+
+void AccPrint(void)
+{
+	int accXRaw = AccGetXAxisRaw();
+	int accYRaw = AccGetYAxisRaw();
+	int accZRaw = AccGetZAxisRaw();
+	printf("$ACCRAW %d %d %d\r\n", accXRaw, accYRaw, accZRaw); // print uncalibrated X Y Z of ACC
+	printf("$ACC %d %d %d\r\n", AccGetXAxis(accXRaw), AccGetYAxis(accYRaw), AccGetZAxis(accZRaw));
 }
