@@ -30,23 +30,32 @@ unsigned int AccGetZAxisRaw(void)
 	return AnalogGetCh(2, 4); //Z op PA2 & PinNeg op PA4 = GND
 }
 
+//Acc needs to return value:
+//min -1000
+//neutral 0 
+//max  1000
+
+//Callibratie voor bord 7
 int AccGetXAxis(unsigned int AccRaw)
 {
-	// offset 820 --> experimenteel bepaald voor set 7
-	int value = AccRaw;// - 820;
-	return value;
+	//min = 420; max = 1200;
+	double schaalfactor = 2.56; //(2000/(1200-420))
+	return (schaalfactor * AccRaw) - 2080; 
+	//2080 is nieuwe offset na schaling
 }
 
 int AccGetYAxis(unsigned int AccRaw)
 {
-	// 850 --> calliberatie voor set 7
-	int value = AccRaw; // - 850;
-	return value;
+	//min = 450; max = 1250;
+	double schaalfactor = 2.5; //(2000/(1250-450))
+	return (schaalfactor * AccRaw) - 2135;
+	//2135 is nieuwe offset na schaling
 }
 
 int AccGetZAxis(unsigned int AccRaw)
 {
-	// 1080 --> calliberatie voor set 7
-	int value = AccRaw; // - 1080;
-	return value;
+	//min = 300; max = 1075;
+	double schaalfactor = 2.58; //(2000/(1075-300))
+	return (schaalfactor * AccRaw) - 1770;
+	//1770 is nieuwe offset na schaling
 }
