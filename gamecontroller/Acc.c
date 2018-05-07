@@ -32,18 +32,21 @@ unsigned int AccGetZAxisRaw(void)
 
 int AccGetXAxis(unsigned int AccRaw)
 {
-	// 800
-	return 0;
+	// offset 820 --> experimenteel bepaald voor set 7
+	int value = AccRaw;// - 820;
+	return value;
 }
 
 int AccGetYAxis(unsigned int AccRaw)
 {
-	// 950
-	return 0;
+	// 850 --> calliberatie voor set 7
+	int value = AccRaw; // - 850;
+	return value;
 }
 
 int AccGetZAxis(unsigned int AccRaw)
 {
-	// 1175
-	return 0;
+	// 1080 --> calliberatie voor set 7
+	int value = AccRaw; // - 1080;
+	return value;
 }

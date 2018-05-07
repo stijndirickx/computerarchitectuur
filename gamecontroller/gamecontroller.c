@@ -21,6 +21,8 @@ char bitmask;
 void SimpleFunction(void);	//A simple function: print a counter (0 to 9) to the terminal
 void LightLoop(void);
 void SwitchPrint(void);
+void TestSpeaker(void);
+
 
 int main(void)
 {	
@@ -43,7 +45,8 @@ int main(void)
 
 	//###2###
 	//SimpleFunction();
-	
+
+	TestSpeaker();
 	bitmask = 0b00000001;
 	while (1){
 		LightLoop();
@@ -85,4 +88,13 @@ void AccPrint(void)
 	int accZRaw = AccGetZAxisRaw();
 	printf("$ACCRAW %d %d %d\r\n", accXRaw, accYRaw, accZRaw); // print uncalibrated X Y Z of ACC
 	printf("$ACC %d %d %d\r\n", AccGetXAxis(accXRaw), AccGetYAxis(accYRaw), AccGetZAxis(accZRaw));
+}
+
+void TestSpeaker(void)
+{
+	SpeakerBeep(500, 500);
+	_delay_ms(500);
+	SpeakerBeep(1000, 500);
+	_delay_ms(500);
+	SpeakerBeep(1500, 500);
 }
