@@ -21,6 +21,7 @@ char bitmask;
 void SimpleFunction(void);	//A simple function: print a counter (0 to 9) to the terminal
 void LightLoop(void);
 void SwitchPrint(void);
+void EncPrint(void);
 
 int main(void)
 {	
@@ -45,11 +46,13 @@ int main(void)
 	//SimpleFunction();
 	
 	bitmask = 0b00000001;
-	while (1){
+	while (1){ //de sensordata over de seriële poort sturen
 		LightLoop();
 		SwitchPrint();
 		AccPrint();
-		_delay_ms(500);
+		EncPrint();
+		//still needs to print encoder -- x: positie incrementele encoder
+		_delay_ms(50); //20 keer per seconde -  wordt gestuurd i.p.v. 2 keer per seconde.
 	}
 }
 
@@ -85,4 +88,9 @@ void AccPrint(void)
 	int accZRaw = AccGetZAxisRaw();
 	printf("$ACCRAW %d %d %d\r\n", accXRaw, accYRaw, accZRaw); // print uncalibrated X Y Z of ACC
 	printf("$ACC %d %d %d\r\n", AccGetXAxis(accXRaw), AccGetYAxis(accYRaw), AccGetZAxis(accZRaw));
+}
+
+void EncPrint(void)
+{
+	printf("$ENC__ %d\r\n", EncoderGetPos());	
 }
