@@ -9,22 +9,17 @@
 volatile char encoderPosition;			//the volatile keyword indicates that a value may change between different accesses
 void EncoderInit(void)
 {
-	PORTC.DIRCLR = 0b00110000;		//Set Input
+	//Pin 4 & 5 as input
+	PORTC.DIRCLR 	= 0b00110000;		//Set Input
+	PORTC.PIN4CTRL 	= 0b00011000;		//Bit 5:3 totempole pull up;
+	PORTC.PIN5CTRL 	= 0b00011000;		//Bit 2:0 reacts on both edges (falling and rising)
 	
-	//pin 4&5
-	//bit4t/m6 (011) --> totempole pull up
-	//bit3t/m1 (000) --> reageert op rising EN falling edge
-	PORTC.PIN4CTRL = 0b00011000;
-	PORTC.PIN5CTRL = 0b00011000;
-	
-	//bit4t/m3 - interrupt 1 op low level
-	//bit2t/m1 - interrupt 0 op low level
-	PORTC.INTCTRL = 0b00000101;	
-			
-	PORTC.INT0MASK = 0b00010000;		//interrupt 0 - pin 4
-	PORTC.INT1MASK = 0b00100000;		//interrupt 1 - pin 5
-	PORTC.INTFLAGS = 0b00000011;
-	PMIC.CTRL = 0b10000001;				//8e bit round robin scheduling, 1ste bit low level interrupt aanzetten
+	//p122-123 in processor manual
+	PORTC.INTCTRL 	= 0b00000101;		//Bit 3:2 interrupt 1 op low level;	 Bit 1:0 interrupt 0 op low level 
+	PORTC.INT0MASK 	= 0b00010000;		//interrupt 0 - pin 4
+	PORTC.INT1MASK 	= 0b00100000;		//interrupt 1 - pin 5
+	PORTC.INTFLAGS 	= 0b00000011;		//Bit 7:2 reserved; bit 1:0 interrupt n flag
+	PMIC.CTRL 		= 0b10000001;		//8e bit round robin scheduling, 1ste bit low level interrupt aanzetten
 }
 
 int EncoderGetPos(void)
@@ -32,58 +27,52 @@ int EncoderGetPos(void)
 	return encoderPosition;
 }
 
-ISR(PORTC_INT0_vect)
+//To understand next code look at the table given in the description on p19
+//there are 8 different scenario's
+
+ISR(PORTC_INT0_vect) //PC4 is arrow (has edge)
 {
-	_delay_ms(5);						//against debounce time
-	PORTC.INTFLAGS = 0b00000011;		//Reset interruptflag
-	if((PORTC.IN & 0x10) == 0x10)		//PC4 rising edge
-	{
-		if((PORTC.IN & 0x20) == 0x20)	//PC5 hoog
-		{
-			encoderPosition--;			//Encoder decrementeren
+	_delay_ms(5);									//against debounce time
+	PORTC.INTFLAGS = 0b00000011;					//Reset interruptflag
+	if((PORTC.IN & 0b00010000) == 0b00010000){		//PC4 = Arrow up (rising edge)
+		if((PORTC.IN & 0b00100000) == 0b00100000){}	//PC5 = 1 (high)
+			encoderPosition--;						//Encoder decrement
 		}
-		else							//PC5 laag
-		{
-			encoderPosition++;			//Encoder incrementeren
+		else{										//PC5 = 0 (low)
+			encoderPosition++;						//Encoder increment
 		}
 	}
-	else								//PC4 falling edge
-	{
-		if((PORTC.IN & 0x20) == 0x20)	//PC5 hoog
-		{
-			encoderPosition++;			//Encoder incrementeren
+	else{											//PC4 = Arrow down (falling edge)
+		if((PORTC.IN & 0b00100000) == 0b00100000){	//PC5 = 1 (high)
+			encoderPosition++;						//Encoder increment
 		}
-		else							//PC5 laag
-		{
-			encoderPosition--;			//Encoder decrementeren
+		else{										//PC5 = 0 (low)
+			encoderPosition--;						//Encoder decrement
 		}
 	}
 }
 
-ISR(PORTC_INT1_vect)
+ISR(PORTC_INT1_vect) //PC5 is arrow (has edge)
 {
-	_delay_ms(5);						//against debounce time
-	PORTC.INTFLAGS = 0b00000011;		//Reset interruptflag
-	if((PORTC.IN & 0x20) == 0x20)		//PC5 rising edge
-	{
-		if((PORTC.IN & 0x10) == 0x10)	//PC4 hoog
-		{
-			encoderPosition++;			//Encoder incrementeren
+	_delay_ms(5);									//against debounce time
+	PORTC.INTFLAGS = 0b00000011;					//Reset interruptflag
+	if((PORTC.IN & 0b00100000) == 0b00100000){		//PC5 = Arrow up (rising edge)
+		if((PORTC.IN & 0b00010000) == 0b00010000){	//PC4 = 1 (high)
+			encoderPosition++;						//Encoder increment
 		}
-		else							//PC4 laag
-		{
-			encoderPosition--;			//Encoder decrementeren
+		else{										//PC4 = 0 (low)
+			encoderPosition--;						//Encoder decrement
 		}
 	}
-	else								//PC5 falling edge
-	{
-		if((PORTC.IN & 0x10) == 0x10)	//PC4 hoog
-		{
-			encoderPosition--;			//Encoder decrementeren
+	else{											//PC5 = Arrow down (falling edge)
+		if((PORTC.IN & 0b00010000) == 0b00010000){	//PC4 = 1 (high)
+			encoderPosition--;						//Encoder decrement
 		}
-		else							//PC4 laag
-		{
-			encoderPosition++;			//Encoder incrementeren
+		else{										//PC4 = 0 (low)
+			encoderPosition++;						//Encoder increment
 		}
 	}
 }
+
+//The encoder was unreliable at first, didnt take into account for the debounce time
+//https://electronics.stackexchange.com/questions/318391/ky-040-rotary-middle-push-button-switch-is-unreliable

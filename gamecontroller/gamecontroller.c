@@ -53,7 +53,6 @@ int main(void)
 		SwitchPrint();
 		AccPrint();
 		EncPrint();
-		//still needs to print encoder -- x: positie incrementele encoder
 		_delay_ms(50); //20 keer per seconde -  wordt gestuurd i.p.v. 2 keer per seconde.
 	}
 }
