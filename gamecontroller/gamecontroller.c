@@ -47,7 +47,7 @@ int main(void)
 	//SimpleFunction();
 
 	TestSpeaker();
-	bitmask = 0b00000001;
+	bitmask = 0b00000001; // 1st led
 	while (1){ //de sensordata over de seriële poort sturen
 		LightLoop();
 		SwitchPrint();
