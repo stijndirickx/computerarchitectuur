@@ -25,9 +25,8 @@ void SpeakerInit(void)
 }
 void SpeakerBeep(int Frequency,int Length)
 {
-	int N = 1; // the prescaler divider used
 	//single-slope PWM frequency = Fclk / (n*(PER + 1)) ==> PER = (Fclk - 1)/(freq*N) --> FORMULE P145
-	int fper = (16000000-1)/(Frequency*N); //Fclk = 16 MHz
+	int fper = (16000000-1)/(Frequency*1); //Fclk = 16 MHz, prescaler divider used N = 1
 
 	TCC0.PER = fper; // topvalue
 	TCC0.CCA = fper/2; // pulsbreedte (duty cycle)

@@ -47,12 +47,12 @@ int main(void)
 	//SimpleFunction();
 
 	TestSpeaker();
-	bitmask = 0b00000001;
+	bitmask = 0b00000001; // eerste ledje
 	while (1){
 		LightLoop();
 		SwitchPrint();
 		AccPrint();
-		_delay_ms(500);
+		_delay_ms(50); // 20 keer per seconde
 	}
 }
 
