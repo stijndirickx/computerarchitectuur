@@ -8,7 +8,7 @@ void SpeakerInit(void)
 		//Setup IO
 		PORTC.DIRCLR= 0b00000001; //set individual pins as input -> Clear PC0
 		
-		//Setup TC for frequency generation
+		//Setup TC for frequency generation - p148+
 		TCC0.CTRLA= 0b00000001; // Bit 7:4 – Reserved, Bit 3:0 Clock select 1 = Prescaler: Clk
 		TCC0.CTRLB= 0b00010011; // Bit 7:4 – CCxEN = CCAEN capture A channel = Pin PC0, Bit 3 – Reserved, Bit 2:0 - Waveform Generation Mode = Single-slope PWM
 		TCC0.CTRLC= 0b00000000; // Bit 3:0 – CMPx: Compare Output Value x
