@@ -12,7 +12,7 @@ void USARTInit(void)
 	USART_PORT.DIRCLR=0b00000100;
 	
 	USART.CTRLA=0b00000000; //polled mode = interrupts uitgeschakeld
-	USART.CTRLB=0b00011000; //transmitter en reveicer aan, double speed comm uit
+	USART.CTRLB=0b00011000; //transmitter en receiver aan, double speed comm uit
 	USART.CTRLC=0b00000011; // USART in async mode
 	
 	//USART.BAUDCTRLA=0xE5; //BSEL=3301, BSCALE=-5 9600 baud

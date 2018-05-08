@@ -29,7 +29,7 @@ void SpeakerBeep(int Frequency,int Length)
 	int fper = (16000000-1)/(Frequency*1); //Fclk = 16 MHz, prescaler divider used N = 1
 
 	TCC0.PER = fper; // topvalue
-	TCC0.CCA = fper/2; // pulsbreedte (duty cycle)
+	TCC0.CCA = fper/2; // pulse width (duty cycle)
 
 	PORTC.DIRSET = 0b00000001; // set individual pins as output
 	_delay_ms(Length);
